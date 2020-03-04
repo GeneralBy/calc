@@ -22,15 +22,14 @@ public class Calculator extends Action {
     }
 
     public Calculator(Processor processor) throws Exception {
-        if(processor.getUserA() >= 1 && processor.getUserB() >= 1 && processor.getUserA() <= 10 && processor.getUserB() <= 10 ) {
+        if (processor.getUserA() >= 1 && processor.getUserB() >= 1 && processor.getUserA() <= 10 && processor.getUserB() <= 10) {
             this.a = processor.getUserA();
             this.sign = processor.getUserSign();
             this.b = processor.getUserB();
-        }
-        else {
+        } else {
             throw new Exception();
         }
-        if(!processor.getFlagA() && !processor.getFlagB()) {
+        if (!processor.getFlagA() && !processor.getFlagB()) {
             if (sign.equals("*") || sign.equals("/") || sign.equals("+") || sign.equals("-")) {
                 switch (sign) {
                     case "*":
@@ -53,30 +52,33 @@ public class Calculator extends Action {
             } else {
                 throw new Exception();
             }
-        }
-        else {
+        } else {
             String romanString;
-            switch (sign) {
-                case "*":
-                    multiplication(this);
-                    romanString = arabicToRoman(result);
-                    System.out.println(romanString);
-                    break;
-                case "/":
-                    division(this);
-                    romanString = arabicToRoman(result);
-                    System.out.println(romanString);
-                    break;
-                case "+":
-                    addition(this);
-                    romanString = arabicToRoman(result);
-                    System.out.println(romanString);
-                    break;
-                case "-":
-                    difference(this);
-                    romanString = arabicToRoman(result);
-                    System.out.println(romanString);
-                    break;
+            if (sign.equals("*") || sign.equals("/") || sign.equals("+") || sign.equals("-")) {
+                switch (sign) {
+                    case "*":
+                        multiplication(this);
+                        romanString = arabicToRoman(result);
+                        System.out.println(romanString);
+                        break;
+                    case "/":
+                        division(this);
+                        romanString = arabicToRoman(result);
+                        System.out.println(romanString);
+                        break;
+                    case "+":
+                        addition(this);
+                        romanString = arabicToRoman(result);
+                        System.out.println(romanString);
+                        break;
+                    case "-":
+                        difference(this);
+                        romanString = arabicToRoman(result);
+                        System.out.println(romanString);
+                        break;
+                }
+            } else {
+                throw new Exception();
             }
 
         }

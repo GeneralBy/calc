@@ -49,24 +49,26 @@ public class Processor {
     }
 
     public void fillingInVariables(String[] list) throws Exception {
-        for (RomanNumerals romanNumerals: RomanNumerals.values()) {
-            if(romanNumerals.toString().equals(list[0])){
+        for (RomanNumerals romanNumerals : RomanNumerals.values()) {
+            if (romanNumerals.toString().equals(list[0])) {
                 flagA = true;
+                break;
             }
         }
-        for (RomanNumerals romanNumerals2: RomanNumerals.values()) {
-            if(romanNumerals2.toString().equals(list[2])){
+        for (RomanNumerals romanNumerals2 : RomanNumerals.values()) {
+            if (romanNumerals2.toString().equals(list[2])) {
                 flagB = true;
+                break;
 
             }
         }
-        if(flagA && flagB) {
+        if (flagA && flagB) {
             userSign = list[1];
-            for (RomanNumerals romanNumerals: RomanNumerals.values()) {
-                if(romanNumerals.toString().equals(list[0])){
+            for (RomanNumerals romanNumerals : RomanNumerals.values()) {
+                if (romanNumerals.toString().equals(list[0])) {
                     userA = romanNumerals.numerals;
-                    for (RomanNumerals romanNumerals2: RomanNumerals.values()) {
-                        if(romanNumerals2.toString().equals(list[2])){
+                    for (RomanNumerals romanNumerals2 : RomanNumerals.values()) {
+                        if (romanNumerals2.toString().equals(list[2])) {
                             userB = romanNumerals2.numerals;
 
                         }
@@ -74,14 +76,17 @@ public class Processor {
 
                 }
             }
-        }
-        else if(flagA && !flagB || !flagA && flagB) {
+        } else if (flagA && !flagB || !flagA && flagB) {
             throw new Exception();
-        }
-        else {
-            userA = Integer.parseInt(list[0]);
-            userB = Integer.parseInt(list[2]);
-            userSign = list[1];
+        } else {
+            try {
+                userA = Integer.parseInt(list[0]);
+                userB = Integer.parseInt(list[2]);
+                userSign = list[1];
+            } catch (NumberFormatException e) {
+                throw new Exception();
+            }
+
         }
 
 
